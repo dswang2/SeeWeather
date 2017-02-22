@@ -18,18 +18,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.animation.DecelerateInterpolator;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.xiecc.seeWeather.R;
 import com.xiecc.seeWeather.base.BaseActivity;
 import com.xiecc.seeWeather.base.C;
 import com.xiecc.seeWeather.common.PLog;
-import com.xiecc.seeWeather.common.utils.*;
+import com.xiecc.seeWeather.common.utils.CircularAnimUtil;
+import com.xiecc.seeWeather.common.utils.DoubleClickExit;
+import com.xiecc.seeWeather.common.utils.RxDrawer;
+import com.xiecc.seeWeather.common.utils.RxUtils;
+import com.xiecc.seeWeather.common.utils.SharedPreferenceUtil;
+import com.xiecc.seeWeather.common.utils.SimpleSubscriber;
+import com.xiecc.seeWeather.common.utils.ToastUtil;
 import com.xiecc.seeWeather.modules.about.ui.AboutActivity;
 import com.xiecc.seeWeather.modules.city.ui.ChoiceCityActivity;
 import com.xiecc.seeWeather.modules.main.adapter.HomePagerAdapter;
 import com.xiecc.seeWeather.modules.service.AutoUpdateService;
 import com.xiecc.seeWeather.modules.setting.ui.SettingActivity;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import rx.android.schedulers.AndroidSchedulers;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,13 +55,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
+    // 注解id
+    // 在activity_main.xml这个布局，以及其include的part_tablayout.xml布局中，定义的id有：
+    // viewPager，toolbar，tabLayout，fab，nav_view，drawer_layout，coord,appbar_layout
+    // 注解了常用的ID
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
         PLog.i("onCreate");
+
         initView();
         initDrawer();
         initIcon();
