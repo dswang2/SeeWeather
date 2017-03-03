@@ -13,7 +13,19 @@ public class BaseActivity extends RxAppCompatActivity {
     /**
      * 设置状态栏颜色
      * 也就是所谓沉浸式状态栏
+     * 其实就是设置状态栏的颜色而已
      */
+    // @Deprecated 注释：用于表明类(class)、方法(method)、字段(field)已经不再推荐使用
+    // 代码重构时，会经常用到@Deprecated注释
+
+    // Android KITKAT 以上实现沉浸式状态栏 实现
+    // http://www.jianshu.com/p/f8374d6267ef
+
+//    Activity中设置透明状态栏
+//    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//    Activity中设置透明导航栏（ 导航栏指的就是Android下方的三大按键 ）
+//    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
     @Deprecated
     public void setStatusBarColor(int color) {
         /**
@@ -27,6 +39,9 @@ public class BaseActivity extends RxAppCompatActivity {
         }
     }
 
+
+    // kitkat是Google（谷歌公司）Android 4.4（安卓系统）的代号
+    // 设置Android4.4 的沉浸式状态栏颜色
     public void setStatusBarColorForKitkat(int color) {
         /**
          * Android4.4
@@ -49,6 +64,13 @@ public class BaseActivity extends RxAppCompatActivity {
         super.onDestroy();
     }
 
+    // 白天模式/夜间模式 的设置
+    // 参考：夜间模式 AppCompatDelegate 的简单实现
+//    MODE_NIGHT_NO 日间模式
+//    MODE_NIGHT_YES 夜间模式
+//    MODE_NIGHT_AUTO 根据时间自动切换日夜间模式
+//    MODE_NIGHT_FOLLOW_SYSTEM 默认模式
+
     public static void setDayTheme(AppCompatActivity activity) {
         AppCompatDelegate.setDefaultNightMode(
             AppCompatDelegate.MODE_NIGHT_NO);
@@ -66,6 +88,7 @@ public class BaseActivity extends RxAppCompatActivity {
         // 调用 recreate() 使设置生效
         activity.recreate();
     }
+
 
     public void setTheme(boolean isNights, AppCompatActivity activity) {
         if (isNights) {

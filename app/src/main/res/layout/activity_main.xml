@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+DrawerLayout，位于v4包中
+DrawerLayout，实现抽屉导航，侧滑菜单的官方布局
+<android.support.v4.widget.DrawerLayout>
+    主页面布局
+    <android.support.design.widget.CoordinatorLayout/>
+    侧滑菜单页面布局
+    <android.support.design.widget.NavigationView/>
+</android.support.v4.widget.DrawerLayout>
+-->
+
+<!--
+    tools:openDrawer="start"
+    从左到右滑出侧滑菜单
+-->
+
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +25,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
+
+    <!--
+        CoordinatorLayout 是一个 FrameLayout
+        是meterial design包的一个新控件,可以实现比较复杂的动画和布局效果
+    -->
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coord"
